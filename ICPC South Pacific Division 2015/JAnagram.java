@@ -28,25 +28,25 @@ public class JAnagram{
 					HashMap <Character, Integer> hmB = makeHash(charB);
 					
 					int lengthA = wordA.length(), lengthB = wordB.length();
-					int charDiffCounter = 0;
+					int charDiffCounter = 0, diff1 = 0, diff2 = 0;
 					Integer totalA = 0, totalB = 0;
-					if(lengthA > lengthB){
-						for(char c : hmA.keySet()){
-							totalA = hmA.get(c);
-							totalB = hmB.get(c);
-							if(totalB == null){totalB = 0;}
-							charDiffCounter += Math.abs(totalA - totalB);
-						}
+					
+					for(char c : hmA.keySet()){
+						totalA = hmA.get(c);
+						totalB = hmB.get(c);
+						if(totalB == null){totalB = 0;}
+						diff1 += Math.abs(totalA - totalB);
 					}
-					else{
-						for(char c : hmB.keySet()){
-							totalB = hmB.get(c);
-							totalA = hmA.get(c);
-							if(totalA == null){totalA = 0;}
-							charDiffCounter += Math.abs(totalA - totalB);
-						}
+					
+					for(char c : hmB.keySet()){
+						totalB = hmB.get(c);
+						totalA = hmA.get(c);
+						if(totalA == null){totalA = 0;}
+						diff2 += Math.abs(totalA - totalB);
 					}
-
+					
+					charDiffCounter = Math.min(diff1, diff2);
+					
 					if(charDiffCounter > 1){
 						printFormat(wordA, wordB, " is nothing like ");
 					}

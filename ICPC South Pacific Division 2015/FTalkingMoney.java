@@ -61,6 +61,13 @@ public class FTalkingMoney{
 			
 			String output = "";
 			long value = Long.parseLong(dollarString);
+			int centValue = Integer.parseInt(centString);
+			
+			if (value == 0 && centValue == 0) {
+				return "zero dollars and zero cents";
+			}
+			
+			//Still need debit or credit
 			if(value == 1){
 				output += "one dollar";
 				output += " and " + getCent(centString);
@@ -69,6 +76,7 @@ public class FTalkingMoney{
 				output += "zero dollars";
 				output += " and " + getCent(centString);
 			}
+
 			else{
 				String [] dollarPartition = partitionDollar(dollarString);
 
@@ -86,7 +94,7 @@ public class FTalkingMoney{
 							output += hundreds[i];
 						}
 						else{
-							if(Integer.parseInt(dollarPartition[i]) < 100){
+							if(( Integer.parseInt(dollarPartition[i]) < 100 ) && (i == hundreds.length -1)){
 								output += " and " + hundreds[i];
 							}
 							else{
