@@ -24,10 +24,21 @@ public class JAnagram{
 					printFormat(wordA, wordB, " is nothing like ");
 				}
 				else{
+					int lengthA = wordA.length(), lengthB = wordB.length();
+					int maxLength = Math.max(lengthA, lengthB);
+					//Make them have the same length by padding them with space
+					for(int i = lengthA; i < maxLength; i++){
+						wordA = " " + wordA;
+					}
+					for(int i = lengthB; i < maxLength; i++){
+						wordB = " " + wordB;
+					}
+
+					//Update char arrays
+					charA = wordA.toCharArray(); charB = wordB.toCharArray();
 					HashMap <Character, Integer> hmA = makeHash(charA);
 					HashMap <Character, Integer> hmB = makeHash(charB);
 					
-					int lengthA = wordA.length(), lengthB = wordB.length();
 					int charDiffCounter = 0, diff1 = 0, diff2 = 0;
 					Integer totalA = 0, totalB = 0;
 					
@@ -47,6 +58,7 @@ public class JAnagram{
 					
 					charDiffCounter = Math.min(diff1, diff2);
 					
+					wordA = wordA.trim(); wordB = wordB.trim();
 					if(charDiffCounter > 1){
 						printFormat(wordA, wordB, " is nothing like ");
 					}
