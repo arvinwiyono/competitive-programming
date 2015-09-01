@@ -3,37 +3,37 @@ public class HBanking{
 	public static void main(String [] args){
 		Scanner sc = new Scanner(System.in);
 
-		String PIN = sc.nextLine();
-		String pattern = sc.nextLine();
-		String numberString = "";
+		String PIN = sc.nextLine().trim();
+		String pattern = sc.nextLine().trim();
+		String numberString = "0";
 		
 		int pointer = 0;
 		for(char c : pattern.toCharArray()){
+			
 			if(c == Character.toLowerCase(c)){
-				try{
-					String sub = PIN.substring(pointer, pointer + ((int) c - 96));
-					numberString += sub;
-				}
-				catch(Exception e){}
+				
+				int temp = pointer + (int) c - 96;
+
+				if(temp > PIN.length()){pointer = temp; break;}
+
+				String sub = PIN.substring(pointer, temp);
+				numberString += sub;
 			}
 			pointer += (int)Character.toUpperCase(c) - 64;
 			if(pointer > PIN.length()){break;}
 		}
-		//System.out.println(pointer);
+
 		if(pointer != PIN.length()){
 			System.out.println("non sequitur");
 		}
 		else{
-			if(numberString.equals("")){numberString = "0";}
-			int number = Integer.parseInt(numberString);
-			System.out.println(compressNumber(number));
+			System.out.println(compressNumber(numberString));
 		}
 	}
 
-	static int compressNumber(int num){
-		String numString = String.valueOf(num);
+	static int compressNumber(String num){
 		int total = 0;
-		for(char n : numString.toCharArray()){
+		for(char n : num.toCharArray()){
 			total += Integer.parseInt(String.valueOf(n));
 		}
 		return total;
