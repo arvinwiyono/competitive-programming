@@ -24,6 +24,7 @@ public class HBanking{
 			System.out.println("non sequitur");
 		}
 		else{
+			if(numberString.equals("")){numberString = "0";}
 			int number = Integer.parseInt(numberString);
 			System.out.println(compressNumber(number));
 		}
