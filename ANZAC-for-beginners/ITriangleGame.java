@@ -9,7 +9,7 @@ public class ITriangleGame{
 			triangles.add(new Triangle(sc.nextInt(), sc.nextInt(), sc.nextInt()));
 		}
 
-		// this is where we collect the points
+		// this is where we collect the points/results
 		List <Integer> hexagons = new ArrayList <Integer> ();
 
 		Triangle start = triangles.get(0);
@@ -66,10 +66,11 @@ public class ITriangleGame{
 			}
 			return resultsHolder;
 		}
-		else{
+		else{	
+			// value -1 is chosen for validity checking
 			Triangle next = new Triangle (-1,-1,-1);
 			Triangle current = partial.get(partial.size()-1);
-			
+			// try to find one matching triangle
 			for(int j = 0; j < threshold; j++){
 				Triangle t = options.get(j);
 				if(t.rotateAndMatch(current.getRightMost())){
@@ -78,12 +79,13 @@ public class ITriangleGame{
 				}
 			}
 
-			// if you can find pne matching triangle
+			// if you can find one matching triangle
 			if(next.getPoint() != -1){
 				int loop = options.size();
 				for(int i = 0; i < loop; i++){
 					partial.add(next);
 					options.remove((Triangle)next);
+					// need to reduce threshold to limit options. Otherwise same soltuions will come up again
 					resultsHolder = backtrack(partial, options, resultsHolder, options.size()-i);
 					Triangle temp = partial.get(partial.size()-1);
 					partial.remove(temp);
@@ -138,7 +140,7 @@ public class ITriangleGame{
 		public int getPoint(){
 			return p3;
 		}
-
+		// for debugging purpose
 		public String getInfo(){
 			return p1 + " " + p2 + " " + p3;
 		}
