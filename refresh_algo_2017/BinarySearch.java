@@ -41,7 +41,7 @@ class BinarySearch{
     }
 
     private static int binarySearchLoop(int [] intArray, int target){
-        int mid = 0; // Jut for initialization
+        int mid = 0; // Just for initialization
         int start = 0;
         int end = intArray.length;
         while(start <= end){
