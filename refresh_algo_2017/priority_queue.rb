@@ -118,6 +118,17 @@ def test_case_2
     pq.push(10)
     puts pq.pop
     puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    puts pq.pop
+    pq.push(-2)
+    pq.push(-4)
+    pq.push(500)
 end
 
 def test_case_1()
