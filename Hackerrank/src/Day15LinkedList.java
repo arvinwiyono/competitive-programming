@@ -15,7 +15,7 @@ public class Day15LinkedList {
     }
 
     static class LinkedList<T> {
-        Node head;
+        Node<T> head;
 
         public LinkedList() {
             head = null;
